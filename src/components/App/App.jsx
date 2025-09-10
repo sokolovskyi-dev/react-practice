@@ -5,6 +5,7 @@ import upcomingEvents from "../../upcoming-events.json";
 import { FaBeer } from "react-icons/fa";
 
 import { Container } from "./App.styled";
+import { Counter } from "components/Counter/Counter";
 
 export const App = () => {
   return (
@@ -12,6 +13,7 @@ export const App = () => {
       <PageTitle text="24th core worlds coalition conference" />
       <EventBoard events={upcomingEvents} />
       <FaBeer />
+      <Counter initialValue={100} />
     </Container>
   );
 };
