@@ -1,3 +1,4 @@
+import { Controls } from "components/Controls/Controls";
 import React from "react";
 
 export class Counter extends React.Component {
@@ -23,14 +24,10 @@ export class Counter extends React.Component {
     return (
       <div>
         <span>{this.state.value}</span>
-        <div>
-          <button type="button" onClick={this.handleIncrement}>
-            Увеличить на 1
-          </button>
-          <button type="button" onClick={this.handleDecrement}>
-            Уменьшить на 1
-          </button>
-        </div>
+        <Controls
+          onIncrement={this.handleIncrement}
+          onDecrement={this.handleDecrement}
+        />
       </div>
     );
   }

@@ -6,6 +6,7 @@ import { FaBeer } from "react-icons/fa";
 
 import { Container } from "./App.styled";
 import { Counter } from "components/Counter/Counter";
+import { Dropdown } from "components/Dropdown/Dropdown";
 
 export const App = () => {
   return (
@@ -14,6 +15,8 @@ export const App = () => {
       <EventBoard events={upcomingEvents} />
       <FaBeer />
       <Counter initialValue={100} />
+
+      <Dropdown />
     </Container>
   );
 };
