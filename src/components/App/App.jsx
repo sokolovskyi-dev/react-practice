@@ -14,12 +14,19 @@ import initialTodos from "../../todos.json";
 export class App extends Component {
   state = {
     todos: initialTodos,
+    name: "",
+    tag: "",
   };
 
   deleteTodo = (todoId) => {
     this.setState((prevState) => ({
       todos: prevState.todos.filter(({ id }) => id !== todoId),
     }));
+  };
+
+  handleChange = (event) => {
+    const { name, value } = event.currentTarget;
+    this.setState({ [name]: value });
   };
 
   render() {
@@ -34,6 +41,28 @@ export class App extends Component {
         <Dropdown />
 
         <TodoList todos={todos} onDeleteTodo={this.deleteTodo} />
+
+        <form>
+          <label>
+            Name
+            <input
+              name="name"
+              type="text"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+          </label>
+
+          <label>
+            Tag
+            <input
+              name="tag"
+              type="text"
+              value={this.state.tag}
+              onChange={this.handleChange}
+            />
+          </label>
+        </form>
       </Container>
     );
   }
