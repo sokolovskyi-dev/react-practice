@@ -1,4 +1,5 @@
 import { Component } from "react";
+import shortid from "shortid";
 
 import { PageTitle } from "components/PageTitle/PageTitle";
 import { EventBoard } from "../EventBoard/EventBoard";
@@ -11,11 +12,27 @@ import { Counter } from "components/Counter/Counter";
 import { Dropdown } from "components/Dropdown/Dropdown";
 import { TodoList } from "components/TodoList/TodoList";
 import initialTodos from "../../todos.json";
+import { Form } from "components/Form/Form";
+import { TodoEditor } from "components/TodoEditor/TodoEditor";
+import { Filter } from "components/TodoList/Filter";
 export class App extends Component {
   state = {
     todos: initialTodos,
-    name: "",
-    tag: "",
+    filter: "",
+  };
+
+  addTodo = (text) => {
+    console.log(text);
+
+    const todo = {
+      id: shortid.generate(),
+      text,
+      complete: false,
+    };
+
+    this.setState((prevState) => ({
+      todos: [todo, ...prevState.todos],
+    }));
   };
 
   deleteTodo = (todoId) => {
@@ -24,45 +41,56 @@ export class App extends Component {
     }));
   };
 
-  handleChange = (event) => {
-    const { name, value } = event.currentTarget;
-    this.setState({ [name]: value });
+  toggleCompleted = (todoId) => {
+    console.log(todoId);
+    this.setState((prevState) => ({
+      todos: prevState.todos.map((todo) => {
+        if (todo.id === todoId) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        }
+        return todo;
+      }),
+    }));
+  };
+
+  formSubmitHandler = (data) => {
+    console.log(data);
+  };
+
+  changeFilter = (e) => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
+  getVisibleTodos = () => {
+    const { filter, todos } = this.state;
+    const normalizedFilter = this.state.filter.toLowerCase();
+    return todos.filter((todo) =>
+      todo.text.toLowerCase().includes(normalizedFilter)
+    );
   };
 
   render() {
-    const { todos } = this.state;
+    const { filter, todos } = this.state;
+    const visibleTodos = this.getVisibleTodos();
     return (
       <Container>
         <PageTitle text="24th core worlds coalition conference" />
         <EventBoard events={upcomingEvents} />
         <FaBeer />
         <Counter initialValue={100} />
-
         <Dropdown />
+        <TodoList
+          todos={visibleTodos}
+          onDeleteTodo={this.deleteTodo}
+          onToggleCompleted={this.toggleCompleted}
+        />
 
-        <TodoList todos={todos} onDeleteTodo={this.deleteTodo} />
-
-        <form>
-          <label>
-            Name
-            <input
-              name="name"
-              type="text"
-              value={this.state.name}
-              onChange={this.handleChange}
-            />
-          </label>
-
-          <label>
-            Tag
-            <input
-              name="tag"
-              type="text"
-              value={this.state.tag}
-              onChange={this.handleChange}
-            />
-          </label>
-        </form>
+        <TodoEditor onSubmit={this.addTodo} />
+        <Filter value={filter} onChange={this.changeFilter} />
+        <Form onSubmit={this.formSubmitHandler} />
       </Container>
     );
   }
