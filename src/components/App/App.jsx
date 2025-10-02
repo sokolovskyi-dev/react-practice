@@ -66,14 +66,14 @@ export class App extends Component {
 
   getVisibleTodos = () => {
     const { filter, todos } = this.state;
-    const normalizedFilter = this.state.filter.toLowerCase();
+    const normalizedFilter = filter.toLowerCase();
     return todos.filter((todo) =>
       todo.text.toLowerCase().includes(normalizedFilter)
     );
   };
 
   render() {
-    const { filter, todos } = this.state;
+    const { filter } = this.state;
     const visibleTodos = this.getVisibleTodos();
     return (
       <Container>
