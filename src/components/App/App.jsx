@@ -15,6 +15,8 @@ import initialTodos from "../../todos.json";
 import { Form } from "components/Form/Form";
 import { TodoEditor } from "components/TodoEditor/TodoEditor";
 import { Filter } from "components/TodoList/Filter";
+import { Reader } from "components/Reader/Reader";
+import publications from "../../publications.json";
 export class App extends Component {
   state = {
     todos: initialTodos,
@@ -91,6 +93,8 @@ export class App extends Component {
         <TodoEditor onSubmit={this.addTodo} />
         <Filter value={filter} onChange={this.changeFilter} />
         <Form onSubmit={this.formSubmitHandler} />
+
+        <Reader items={publications} />
       </Container>
     );
   }
