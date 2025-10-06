@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { toast } from "react-toastify";
 import { CiSearch } from "react-icons/ci";
 
 const styles = { form: { marginBottom: 20 } };
@@ -12,7 +13,7 @@ export default class PokemonForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.pokemonName.trim() === "") {
-      alert("Alert");
+      toast.error("Введите имя!!!");
       return;
     }
     this.props.onSubmit(this.state.pokemonName);
