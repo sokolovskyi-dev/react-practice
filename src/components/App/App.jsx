@@ -1,5 +1,6 @@
 import { Component } from "react";
-import SignupForm from "./SignupForm/SignupForm";
+import SignupForm from "../SignupForm/SignupForm";
+import Counter from "components/Counter/Counter";
 
 export class App extends Component {
   state = {};
@@ -8,6 +9,7 @@ export class App extends Component {
     return (
       <div>
         <SignupForm />
+        <Counter />
       </div>
     );
   }
