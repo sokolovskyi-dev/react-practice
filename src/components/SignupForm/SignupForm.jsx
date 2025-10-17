@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SignupForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(
+    JSON.parse(window.localStorage.getItem("email") ?? "")
+  );
+  const [password, setPassword] = useState(
+    JSON.parse(window.localStorage.getItem("password") ?? "")
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem("email", JSON.stringify(email));
+  }, [email]);
+
+  useEffect(() => {
+    window.localStorage.setItem("password", JSON.stringify(password));
+  }, [password]);
 
   const handleChange = (event) => {
     switch (event.target.name) {
