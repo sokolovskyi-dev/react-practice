@@ -12,7 +12,7 @@ export default function Counter() {
   };
 
   useEffect(() => {
-    console.log("Запускается UseEffect");
+    // console.log("Запускается UseEffect");
     const totalClicks = counterA + counterB;
 
     document.title = `Всего кликнули ${totalClicks}  раз`;
