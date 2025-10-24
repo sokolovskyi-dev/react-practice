@@ -1,7 +1,8 @@
 import { Component } from "react";
 import SignupForm from "../SignupForm/SignupForm";
 import Counter from "components/Counter/Counter";
-import Clock from "components/Clock/Clock";
+import Counter1 from "components/Counter/Counter1";
+// import Clock from "components/Clock/Clock";
 
 export class App extends Component {
   state = {};
@@ -11,7 +12,9 @@ export class App extends Component {
       <div>
         <SignupForm />
         <Counter />
-        <Clock />
+        <Counter1 />
+
+        {/* <Clock /> */}
       </div>
     );
   }
