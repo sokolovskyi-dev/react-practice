@@ -7,7 +7,7 @@ import { Component } from "react";
 // import Counter from "components/Counter/Counter";
 // import Counter1 from "components/Counter/Counter1";
 // import UserMenu from "components/UserMenu/UserMenu";
-import { NavLink, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 // import Clock from "components/Clock/Clock";
 
 export class App extends Component {
@@ -18,8 +18,8 @@ export class App extends Component {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/dogs" element={<Dogs />} />
-          <Route path="/dogs/:dogId" element={<DogDetails />} />
+          <Route path="dogs" element={<Dogs />} />
+          <Route path="dogs/:dogId" element={<DogDetails />} />
         </Route>
       </Routes>
     );
